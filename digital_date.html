@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>digital date</title>
+</head>
+<body onload="initClock()">
+	<h1 class="hadding">Digital clock make by <i>Akleem Ahmad<i></h1>
+<div class="datetime">
+	<div class="date">
+		<span id="dayname">Day,</span>
+		
+		<span id="month">Month,</span>
+		<span id="daynum">00,</span>
+		<span id="year"> Year,</span>
+		
+	</div>
+	<div class="time">
+		<span id="hour">00</span>
+		<span id="minutes">00</span>
+		<span id="secound">00</span>
+		<span id="period">AM</span>
+		
+	</div>
+	
+</div>
+</body>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+
+	}
+	body{
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: #10101E;
+	}
+	.hadding{
+		color:#fff;
+		position: absolute;
+		top: 40px;
+		border-bottom: 2px solid #2E94E3
+
+	}
+	.datetime{
+		color:#fff;
+		background: #10101E;
+		font-family: "segoe Ul",sans-serif;
+		width: 340;
+		padding: 15px 10px;
+		border:3px solid #2E94E3;
+		border-radius: 5px;
+		-webkit-box-reflect:below 1px linear-gradient(transparent,rgba(255,255,255,0.1));/*..duplicate box shadow make by using webkit full lien*/
+		transition: 0.7s;
+		transition-property: background,box-shadow
+	}
+	.datetime:hover {
+		background-color: #2E94E3;
+		box-shadow: 0 0 3px #2E94E3;
+
+
+	}
+	.date:hover{
+		background-color:#10101E;
+	}
+	.date{
+		font-size: 20px;
+		font-weight: 300;
+		text-align: center;
+		letter-spacing: 3px;
+		color:#2E94E3;
+	}
+	.time{
+		margin-top: 25px;
+		font-size: 60px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+	.time span:not(:last-child){
+		position: relative;
+		margin: 0 30px;
+		font-weight: 700;
+		text-align: center;
+		letter-spacing: 4px;
+
+	}
+	.time span:last-child{
+		border-bottom: 3px solid #2E94E1;
+		font-size: 40px;
+		text-transform: uppercase;
+		margin-top: 10px;
+		padding: 0 5px;
+		border-radius: 3px ;
+	}
+	.date span:not(:last-child){
+		position: relative;
+		margin: 0 5px;
+		font-weight: 600;
+		text-align: center;
+		letter-spacing: 3px;
+	}
+</style>
+<script type="text/javascript">
+	function updateClock(){
+		var now= new Date();
+		var dname=now.getDay();
+		no=now.getMonth();
+		dnum=now.getDate();
+		yr=now.getFullYear();
+		hou=now.getHours();
+		min=now.getMinutes();
+		sec=now.getSeconds();
+		pr="AM";
+
+
+		if(hou==0){
+			hou=12;
+		}
+		if (hou>12) {
+			hou=hou-12;
+			pr="PM"
+		}
+		// Number.prototype.pad =function(digits){
+		// 	for(let n=this.toString(); n.length<digits;n=0+n)
+		// 		return n;
+		// }this is used to not see singal digit always 2 digit like 01 not 1
+
+		var monts=['Junuary','February','March','April','May','June','July','August','Setamber','Octubar','November','Deceber'];
+		var week=['Sunday','Monday','Tuesday','Thusday','Friday','Setarday'];
+		let ids=['dayname','month','daynum','year','hour','minutes','secound','period'];
+		let values=[week[dname],dnum,monts[no],yr,hou,min,sec,pr];
+
+		for(let i=0; i<ids.length; i++)
+
+
+		document.getElementById(ids[i]).firstChild.nodeValue=values[i]
+	}
+	function initClock(){
+		updateClock();
+		window.setInterval("updateClock()",1)
+	}
+</script>
+</html>
